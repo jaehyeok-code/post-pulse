@@ -1,3 +1,5 @@
+/**
+ * S3 적용할 코드 작성을 위해 학습하며 테스트로 작성한 코드 (사용x)
 package com.project.file.controller;
 
 import com.project.common.service.S3Service;
@@ -19,10 +21,10 @@ public class S3TestController {
   public String uploadFile(@RequestParam("file") MultipartFile file) {
     try {
       String imageUrl = s3Service.uploadImage(file);
-      return "File uploaded successfully! imageUrl: " + imageUrl;
+      return "파일 업로드 성공 imageUrl: " + imageUrl;
     } catch (Exception e) {
       e.printStackTrace();
-      return "File upload failed!";
+      return "파일 업로드 실패";
     }
   }
-}
+}*/
