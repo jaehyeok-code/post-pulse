@@ -29,3 +29,12 @@ spring:
         static: ap-northeast-2
       s3:
         bucket: post-pulse-bucket-034099
+
+    openfeign:
+      okhttp:
+        enabled: true
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
