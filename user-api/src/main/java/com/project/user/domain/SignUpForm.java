@@ -1,5 +1,6 @@
-package com.project.user.dto;
+package com.project.user.domain;
 
+import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,7 +15,7 @@ public class SignUpForm {
   private String email;
   private String password;
   private String name;
+  private LocalDate birth;
   private String nickname;
-  private String imageUrl;
 
 }
