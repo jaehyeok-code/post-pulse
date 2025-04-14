@@ -1,5 +1,6 @@
 package com.project.user.domain.entity;
 
+import com.project.common.domain.entity.BaseEntity;
 import com.project.user.domain.SignUpForm;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

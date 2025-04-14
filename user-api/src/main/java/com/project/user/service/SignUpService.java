@@ -1,10 +1,13 @@
 package com.project.user.service;
 
+import static com.project.common.exception.ErrorCode.ALREADY_VERIFY;
+import static com.project.common.exception.ErrorCode.EXPIRE_CODE;
+import static com.project.common.exception.ErrorCode.NOT_FOUND_USER;
+import static com.project.common.exception.ErrorCode.WRONG_VERIFICATION;
 import com.project.user.domain.SignUpForm;
 import com.project.user.domain.entity.User;
-
 import com.project.user.domain.repository.UserRepository;
-import com.project.user.exception.CustomException;
+import com.project.common.exception.CustomException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,8 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.Locale;
 import java.util.Optional;
-
-import static com.project.user.exception.ErrorCode.*;
 
 @Service
 @RequiredArgsConstructor

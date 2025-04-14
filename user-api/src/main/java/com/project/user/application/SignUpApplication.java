@@ -4,8 +4,8 @@ import com.project.user.client.MailgunClient;
 import com.project.user.client.mailgun.SendMailForm;
 import com.project.user.domain.SignUpForm;
 import com.project.user.domain.entity.User;
-import com.project.user.exception.CustomException;
-import com.project.user.exception.ErrorCode;
+import com.project.common.exception.CustomException;
+import com.project.common.exception.ErrorCode;
 
 import com.project.user.service.SignUpService;
 
