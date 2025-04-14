@@ -5,8 +5,8 @@ import com.project.common.config.JwtAuthenticationProvider;
 import com.project.common.service.S3Service;
 import com.project.user.domain.entity.User;
 import com.project.user.domain.repository.UserRepository;
-import com.project.user.exception.CustomException;
-import com.project.user.exception.ErrorCode;
+import com.project.common.exception.CustomException;
+import com.project.common.exception.ErrorCode;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

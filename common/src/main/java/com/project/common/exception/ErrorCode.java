@@ -1,4 +1,4 @@
-package com.project.user.exception;
+package com.project.common.exception;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -14,8 +14,13 @@ public enum ErrorCode {
   EXPIRE_CODE(HttpStatus.BAD_REQUEST, "인증시간이 만료되었습니다."),
   WRONG_VERIFICATION(HttpStatus.BAD_REQUEST, "잘못된 인증 시도 입니다."),
   FILE_UPLOAD_FAIL(HttpStatus.BAD_REQUEST, "파일 업로드에 실패하였습니다."),
+
   // login
-  LOGIN_CHECK_FAIL(HttpStatus.BAD_REQUEST, "아이디나 패스워드를 확인해 주세요.");
+  LOGIN_CHECK_FAIL(HttpStatus.BAD_REQUEST, "아이디나 패스워드를 확인해 주세요."),
+
+  NOT_FOUND_POST(HttpStatus.BAD_REQUEST, "게시글을 찾을 수 없습니다."),
+  UNAUTHORIZED_UPDATE(HttpStatus.BAD_REQUEST, "게시글의 수정 권한이 없습니다."),
+  UNAUTHORIZED_DELETE(HttpStatus.BAD_REQUEST, "게시글을 삭제 권한이 없습니다.");
 
 
   private final HttpStatus httpStatus;

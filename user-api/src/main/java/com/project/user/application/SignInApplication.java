@@ -5,13 +5,13 @@ import com.project.common.UserType;
 import com.project.user.domain.SignInForm;
 
 import com.project.user.domain.entity.User;
-import com.project.user.exception.CustomException;
+import com.project.common.exception.CustomException;
 
 import com.project.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import static com.project.user.exception.ErrorCode.LOGIN_CHECK_FAIL;
+import static com.project.common.exception.ErrorCode.LOGIN_CHECK_FAIL;
 
 @Service
 @RequiredArgsConstructor
