@@ -1,4 +1,4 @@
-package com.project.post.domain.dto;
+package com.project.common.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

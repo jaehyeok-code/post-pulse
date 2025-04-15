@@ -20,7 +20,10 @@ public enum ErrorCode {
 
   NOT_FOUND_POST(HttpStatus.BAD_REQUEST, "게시글을 찾을 수 없습니다."),
   UNAUTHORIZED_UPDATE(HttpStatus.BAD_REQUEST, "게시글의 수정 권한이 없습니다."),
-  UNAUTHORIZED_DELETE(HttpStatus.BAD_REQUEST, "게시글을 삭제 권한이 없습니다.");
+  UNAUTHORIZED_DELETE(HttpStatus.BAD_REQUEST, "게시글을 삭제 권한이 없습니다."),
+
+  ALREADY_LIKED(HttpStatus.BAD_REQUEST, "이미 좋아요를 누른 게시글입니다."),
+  NOT_FOUND_LIKE(HttpStatus.BAD_REQUEST, "좋아요 내역을 찾을 수 없습니다.");
 
 
   private final HttpStatus httpStatus;

@@ -3,8 +3,8 @@ package com.project.user.application;
 import com.project.common.UserVo;
 import com.project.common.config.JwtAuthenticationProvider;
 import com.project.common.service.S3Service;
-import com.project.user.domain.entity.User;
-import com.project.user.domain.repository.UserRepository;
+import com.project.common.domain.entity.User;
+import com.project.common.domain.repository.UserRepository;
 import com.project.common.exception.CustomException;
 import com.project.common.exception.ErrorCode;
 

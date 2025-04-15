@@ -1,7 +1,7 @@
 package com.project.user.controller;
 
 import com.project.user.application.SignUpApplication;
-import com.project.user.domain.SignUpForm;
+import com.project.common.domain.dto.SignUpForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

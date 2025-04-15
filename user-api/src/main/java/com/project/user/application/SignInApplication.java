@@ -2,9 +2,9 @@ package com.project.user.application;
 
 import com.project.common.config.JwtAuthenticationProvider;
 import com.project.common.UserType;
-import com.project.user.domain.SignInForm;
+import com.project.common.domain.dto.SignInForm;
 
-import com.project.user.domain.entity.User;
+import com.project.common.domain.entity.User;
 import com.project.common.exception.CustomException;
 
 import com.project.user.service.UserService;

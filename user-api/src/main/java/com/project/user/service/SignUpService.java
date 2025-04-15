@@ -4,9 +4,9 @@ import static com.project.common.exception.ErrorCode.ALREADY_VERIFY;
 import static com.project.common.exception.ErrorCode.EXPIRE_CODE;
 import static com.project.common.exception.ErrorCode.NOT_FOUND_USER;
 import static com.project.common.exception.ErrorCode.WRONG_VERIFICATION;
-import com.project.user.domain.SignUpForm;
-import com.project.user.domain.entity.User;
-import com.project.user.domain.repository.UserRepository;
+import com.project.common.domain.dto.SignUpForm;
+import com.project.common.domain.entity.User;
+import com.project.common.domain.repository.UserRepository;
 import com.project.common.exception.CustomException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -52,8 +52,8 @@ public class SignUpService {
   }
 
   @Transactional
-  public LocalDateTime changeUserValidateEmail(Long customerId, String verificationCode) {
-    Optional<User> userOptional = userRepository.findById(customerId);
+  public LocalDateTime changeUserValidateEmail(Long userId, String verificationCode) {
+    Optional<User> userOptional = userRepository.findById(userId);
 
     if (userOptional.isPresent()) {
       User user = userOptional.get();
