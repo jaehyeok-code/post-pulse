@@ -1,12 +1,13 @@
-package com.project.user.domain.entity;
+package com.project.common.domain.entity;
 
-import com.project.common.domain.entity.BaseEntity;
-import com.project.user.domain.SignUpForm;
+import com.project.common.domain.dto.SignUpForm;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Locale;
@@ -15,7 +16,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.envers.AuditOverride;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,8 +24,7 @@ import org.hibernate.envers.AuditOverride;
 @Getter
 @Entity
 @Builder
-@AuditOverride(forClass = BaseEntity.class)
-public class User extends BaseEntity {
+public class User {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,6 +50,21 @@ public class User extends BaseEntity {
   private LocalDateTime verifyExpiredAt;
 
   private String profilePhotoUrl;
+
+  private LocalDateTime createdAt;
+
+  private LocalDateTime updatedAt;
+
+  @PrePersist
+  public void prePersist() {
+    this.createdAt = LocalDateTime.now();
+    this.updatedAt = LocalDateTime.now();
+  }
+
+  @PreUpdate
+  public void preUpdate() {
+    this.updatedAt = LocalDateTime.now();
+  }
 
   public static User from(SignUpForm form){
     return User.builder()

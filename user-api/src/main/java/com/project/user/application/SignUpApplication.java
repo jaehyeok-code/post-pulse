@@ -2,8 +2,8 @@ package com.project.user.application;
 
 import com.project.user.client.MailgunClient;
 import com.project.user.client.mailgun.SendMailForm;
-import com.project.user.domain.SignUpForm;
-import com.project.user.domain.entity.User;
+import com.project.common.domain.dto.SignUpForm;
+import com.project.common.domain.entity.User;
 import com.project.common.exception.CustomException;
 import com.project.common.exception.ErrorCode;
 

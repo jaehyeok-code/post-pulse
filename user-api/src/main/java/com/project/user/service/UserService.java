@@ -1,7 +1,7 @@
 package com.project.user.service;
 
-import com.project.user.domain.entity.User;
-import com.project.user.domain.repository.UserRepository;
+import com.project.common.domain.entity.User;
+import com.project.common.domain.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.Optional;

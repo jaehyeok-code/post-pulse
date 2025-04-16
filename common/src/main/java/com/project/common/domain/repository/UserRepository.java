@@ -1,6 +1,6 @@
-package com.project.user.domain.repository;
+package com.project.common.domain.repository;
 
-import com.project.user.domain.entity.User;
+import com.project.common.domain.entity.User;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

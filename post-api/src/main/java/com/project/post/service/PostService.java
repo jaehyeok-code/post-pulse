@@ -1,9 +1,12 @@
 package com.project.post.service;
 
+import com.project.common.domain.entity.User;
+import com.project.common.domain.repository.UserRepository;
 import com.project.common.service.S3Service;
-import com.project.post.domain.entity.Post;
-import com.project.post.domain.repository.PostRepository;
-import com.project.post.domain.dto.PostRequest;
+import com.project.common.domain.entity.Post;
+import com.project.common.domain.repository.PostRepository;
+import com.project.common.domain.dto.PostRequest;
+import java.time.LocalDateTime;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -24,6 +27,7 @@ public class PostService {
   private final PostRepository postRepository;
   private final JwtAuthenticationProvider jwtAuthenticationProvider;
   private final S3Service s3Service;
+  private final UserRepository userRepository;
 
   //게시글 작성
   @Transactional
@@ -35,6 +39,9 @@ public class PostService {
 
     UserVo userVo = jwtAuthenticationProvider.getUserVo(token);
 
+    User user = userRepository.findById(userVo.getId())
+        .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
+
     String imageUrl = null;
     if (file != null && !file.isEmpty()) {
       try {
@@ -45,7 +52,7 @@ public class PostService {
     }
 
     Post post = Post.builder()
-        .userId(userVo.getId())
+        .user(user)
         .title(request.getTitle())
         .content(request.getContent())
         .imageUrl(imageUrl)
@@ -66,7 +73,7 @@ public class PostService {
     Post post = postRepository.findById(postId)
         .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_POST));
 
-    if (!post.getUserId().equals(userVo.getId())) {
+    if (!post.getUser().getId().equals(userVo.getId()))  {
       throw new CustomException(ErrorCode.UNAUTHORIZED_UPDATE);
     }
 
@@ -101,7 +108,7 @@ public class PostService {
     Post post = postRepository.findById(postId)
         .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_POST));
 
-    if (!post.getUserId().equals(userVo.getId())) {
+    if (!post.getUser().getId().equals(userVo.getId()))  {
       throw new CustomException(ErrorCode.UNAUTHORIZED_DELETE);
     }
 

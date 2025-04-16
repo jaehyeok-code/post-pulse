@@ -1,8 +1,8 @@
 package com.project.post.controller;
 
-import com.project.post.domain.dto.PostRequest;
-import com.project.post.domain.dto.PostResponse;
-import com.project.post.domain.entity.Post;
+import com.project.common.domain.dto.PostRequest;
+import com.project.common.domain.dto.PostResponse;
+import com.project.common.domain.entity.Post;
 import com.project.post.service.PostService;
 import java.util.List;
 import java.util.stream.Collectors;

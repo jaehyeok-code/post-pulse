@@ -12,8 +12,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @ServletComponentScan
 @EnableFeignClients
 @EnableJpaAuditing
-@EntityScan(basePackages = {"com.project.user.domain.entity", "com.project.post.domain.entity", "com.project.common.domain.entity"})
-@EnableJpaRepositories(basePackages = {"com.project.user.domain.repository", "com.project.post.domain.repository"})
+@EntityScan(basePackages = {"com.project.common.domain.entity"})
+@EnableJpaRepositories(basePackages = {"com.project.common.domain.repository"})
 @ComponentScan(basePackages = {"com.project.user", "com.project.file", "com.project.common", "com.project.post"})
 @SpringBootApplication
 public class UserApplication {

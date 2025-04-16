@@ -1,4 +1,4 @@
-package com.project.user.domain;
+package com.project.common.domain.dto;
 
 import lombok.Getter;
 

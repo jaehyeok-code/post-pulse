@@ -1,4 +1,4 @@
-package com.project.user.domain;
+package com.project.common.domain.dto;
 
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
@@ -17,5 +17,6 @@ public class SignUpForm {
   private String name;
   private LocalDate birth;
   private String nickname;
+
 
 }

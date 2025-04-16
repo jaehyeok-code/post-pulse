@@ -1,6 +1,6 @@
-package com.project.post.domain.repository;
+package com.project.common.domain.repository;
 
-import com.project.post.domain.entity.Post;
+import com.project.common.domain.entity.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
