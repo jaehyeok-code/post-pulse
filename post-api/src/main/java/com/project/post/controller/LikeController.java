@@ -16,20 +16,20 @@ public class LikeController {
   private final LikeApplication likeApplication;
   private final JwtAuthenticationProvider jwtAuthenticationProvider;
 
-  @PostMapping("/add")
+  @PostMapping
   public ResponseEntity<String> addLike(@RequestHeader("X-AUTH-TOKEN") String token,
       @PathVariable Long postId) {
     // JWT 토큰으로부터 유저 정보(UserVo)를 추출
     UserVo userVo = jwtAuthenticationProvider.getUserVo(token);
-    String result = likeApplication.addLike(postId, userVo.getId());
-    return new ResponseEntity<>(result, HttpStatus.CREATED);
+    likeApplication.addLike(postId, userVo.getId());
+    return new ResponseEntity<>("좋아요가 추가 되었습니다.", HttpStatus.CREATED);
   }
 
-  @DeleteMapping("/delete")
+  @DeleteMapping
   public ResponseEntity<String> removeLike(@RequestHeader("X-AUTH-TOKEN") String token,
       @PathVariable Long postId) {
     UserVo userVo = jwtAuthenticationProvider.getUserVo(token);
-    String result = likeApplication.removeLike(postId, userVo.getId());
-    return new ResponseEntity<>(result, HttpStatus.OK);
+    likeApplication.removeLike(postId, userVo.getId());
+    return new ResponseEntity<>("좋아요가 취소 되었습니다.", HttpStatus.OK);
   }
 }

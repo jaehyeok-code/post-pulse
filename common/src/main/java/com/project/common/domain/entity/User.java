@@ -6,6 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Locale;
@@ -53,6 +55,17 @@ public class User {
 
   private LocalDateTime updatedAt;
 
+  @PrePersist
+  public void prePersist() {
+    this.createdAt = LocalDateTime.now();
+    this.updatedAt = LocalDateTime.now();
+  }
+
+  @PreUpdate
+  public void preUpdate() {
+    this.updatedAt = LocalDateTime.now();
+  }
+
   public static User from(SignUpForm form){
     return User.builder()
         .email(form.getEmail().toLowerCase(Locale.ROOT))
@@ -60,8 +73,6 @@ public class User {
         .password(form.getPassword())
         .nickname(form.getNickname())
         .birth(form.getBirth())
-        .createdAt(LocalDateTime.now())
-        .updatedAt(LocalDateTime.now())
         .emailVerified(false)
         .build();
   }

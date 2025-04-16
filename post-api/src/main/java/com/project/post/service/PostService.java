@@ -55,8 +55,6 @@ public class PostService {
         .user(user)
         .title(request.getTitle())
         .content(request.getContent())
-        .createdAt(LocalDateTime.now())
-        .updatedAt(LocalDateTime.now())
         .imageUrl(imageUrl)
         .build();
 
@@ -95,7 +93,6 @@ public class PostService {
       }
     }
 
-    post.setUpdatedAt(LocalDateTime.now());
     return postRepository.save(post);
   }
 
