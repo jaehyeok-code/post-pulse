@@ -48,6 +48,18 @@ services:
     depends_on:
       - zookeeper
 
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.10.1
+    container_name: community-elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200"
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+
 volumes:
-  mysql_data:
-  redis_data:
+    mysql_data:
+    redis_data:
+    esdata:

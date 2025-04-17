@@ -6,6 +6,7 @@ import com.project.common.service.S3Service;
 import com.project.common.domain.entity.Post;
 import com.project.common.domain.repository.PostRepository;
 import com.project.common.domain.dto.PostRequest;
+import com.project.post.search.PostSearchService;
 import java.time.LocalDateTime;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +29,7 @@ public class PostService {
   private final JwtAuthenticationProvider jwtAuthenticationProvider;
   private final S3Service s3Service;
   private final UserRepository userRepository;
+  private final PostSearchService postSearchService; // -> (ElasticSearch)
 
   //게시글 작성
   @Transactional
@@ -58,7 +60,9 @@ public class PostService {
         .imageUrl(imageUrl)
         .build();
 
-    return postRepository.save(post);
+    Post createdPost = postRepository.save(post);
+    postSearchService.indexPost(createdPost);
+    return createdPost;
   }
 
   //게시글 수정
