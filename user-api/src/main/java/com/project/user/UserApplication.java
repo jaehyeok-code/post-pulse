@@ -17,10 +17,17 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableJpaAuditing
 @EntityScan(basePackages = {"com.project.common.domain.entity"})
 @EnableJpaRepositories(basePackages = {"com.project.common.domain.repository"})
-@ComponentScan(basePackages = {"com.project.user", "com.project.file", "com.project.common", "com.project.post"})
+@ComponentScan(basePackages = {"com.project.user", "com.project.file", "com.project.common", "com.project.post",
+    "com.project.notification"})
 @EnableElasticsearchRepositories(basePackages = "com.project.post.search")
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {
+    "com.project.user",
+    "com.project.common",
+    "com.project.post",
+    "com.project.notification"
+})
 public class UserApplication {
+
   public static void main(String[] args) {
     SpringApplication.run(UserApplication.class, args);
   }
