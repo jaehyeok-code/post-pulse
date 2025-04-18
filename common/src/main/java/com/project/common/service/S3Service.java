@@ -19,9 +19,6 @@ public class S3Service {
   @Value("${spring.cloud.aws.s3.bucket}")
   private String bucket;
 
-
-  // S3 이미지 업로드
-
   public String uploadImage(MultipartFile image) throws IOException {
     String fileName = UUID.randomUUID() + "_" + image.getOriginalFilename();
 

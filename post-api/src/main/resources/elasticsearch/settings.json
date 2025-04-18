@@ -1,0 +1,31 @@
+{
+  "index": {
+    "max_ngram_diff": 8
+  },
+  "analysis": {
+    "filter": {
+      "ngram_filter": {
+        "type":     "ngram",
+        "min_gram": 2,
+        "max_gram": 10
+      }
+    },
+    "analyzer": {
+      "ngram_analyzer": {
+        "type":      "custom",
+        "tokenizer": "standard",
+        "filter": [
+          "lowercase",
+          "ngram_filter"
+        ]
+      },
+      "whitespace_analyzer": {
+        "type":      "custom",
+        "tokenizer": "whitespace",
+        "filter": [
+          "lowercase"
+        ]
+      }
+    }
+  }
+}
