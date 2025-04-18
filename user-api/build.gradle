@@ -27,6 +27,8 @@ dependencies {
     implementation project(':common')
     implementation project(':file-api')
     implementation project(':post-api')
+    implementation project(':notification-api')
+
 
     implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
 

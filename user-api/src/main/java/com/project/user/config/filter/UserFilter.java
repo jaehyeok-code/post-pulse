@@ -12,7 +12,8 @@ import lombok.RequiredArgsConstructor;
 
 import java.io.IOException;
 
-@WebFilter(urlPatterns = "/user/*") //ServletContainer 기반 -> @ServletComponentScan 필요
+@WebFilter(urlPatterns = { "/user/*", "/api/notifications/*"},
+asyncSupported = true ) //ServletContainer 기반 -> @ServletComponentScan 필요
 @RequiredArgsConstructor
 public class UserFilter implements Filter {
 
