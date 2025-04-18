@@ -4,6 +4,13 @@ plugins {
     id 'io.spring.dependency-management'
 }
 
+bootJar {
+    enabled = false
+}
+jar {
+    enabled = true
+}
+
 group = 'com.project'
 version = '0.0.1-SNAPSHOT'
 
@@ -26,7 +33,8 @@ configurations {
 dependencies {
     implementation project(':common')
 
-
+    implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
+    implementation 'org.springframework.kafka:spring-kafka'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'

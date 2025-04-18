@@ -1,0 +1,25 @@
+{
+  "properties": {
+    "title": {
+      "type":            "text",
+      "analyzer":        "ngram_analyzer",
+      "search_analyzer": "whitespace_analyzer"
+    },
+    "content": {
+      "type":            "text",
+      "analyzer":        "ngram_analyzer",
+      "search_analyzer": "whitespace_analyzer"
+    },
+    "userId": {
+      "type": "long"
+    },
+    "createdAt": {
+      "type":   "date",
+      "format": "strict_date_optional_time||epoch_millis"
+    },
+    "updatedAt": {
+      "type":   "date",
+      "format": "strict_date_optional_time||epoch_millis"
+    }
+  }
+}
