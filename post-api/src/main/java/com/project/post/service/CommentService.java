@@ -1,10 +1,12 @@
 package com.project.post.service;
 
 import com.project.common.domain.dto.NotificationEvent;
+import com.project.common.domain.dto.PostEvent;
 import com.project.common.domain.entity.Comment;
 import com.project.common.domain.entity.KafkaTopics;
 import com.project.common.domain.entity.NotificationType;
 import com.project.common.domain.entity.Post;
+import com.project.common.domain.entity.PostEventType;
 import com.project.common.domain.entity.User;
 import com.project.common.domain.repository.CommentRepository;
 import com.project.common.domain.repository.PostRepository;
@@ -12,6 +14,7 @@ import com.project.common.domain.repository.UserRepository;
 import com.project.common.exception.CustomException;
 import com.project.common.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,7 +29,9 @@ public class CommentService {
   private final CommentRepository commentRepository;
   private final PostRepository postRepository;
   private final UserRepository userRepository;
-  private final KafkaTemplate<String, NotificationEvent> kafkaTemplate;
+  private final KafkaTemplate<String, NotificationEvent> notificationKafka;  // 알림용
+  private final @Qualifier("popularityKafkaTemplate") //인기 집계용
+  KafkaTemplate<String, PostEvent> popularityKafka;
 
   //댓글 작성
   public Comment addComment(Long postId, Long userId, String content) {
@@ -42,13 +47,21 @@ public class CommentService {
         .build();
     Comment saved = commentRepository.save(comment);
 
-    NotificationEvent evt = new NotificationEvent(
+    NotificationEvent notifEvt = new NotificationEvent(
         post.getUser().getId(),
         NotificationType.COMMENT,
         saved.getId(),
         "새 댓글이 등록되었습니다."
     );
-    kafkaTemplate.send(KafkaTopics.NOTIFICATION, evt);
+    notificationKafka.send(KafkaTopics.NOTIFICATION, notifEvt);
+
+    PostEvent popEvt = new PostEvent(
+        postId,
+        userId,
+        PostEventType.COMMENT,
+        System.currentTimeMillis()
+    );
+    popularityKafka.send("post-events", popEvt);
 
     return saved;
   }

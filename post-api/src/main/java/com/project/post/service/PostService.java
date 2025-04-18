@@ -2,8 +2,10 @@ package com.project.post.service;
 
 import com.project.common.UserVo;
 import com.project.common.config.JwtAuthenticationProvider;
+import com.project.common.domain.dto.PostEvent;
 import com.project.common.domain.dto.PostRequest;
 import com.project.common.domain.entity.Post;
+import com.project.common.domain.entity.PostEventType;
 import com.project.common.domain.entity.User;
 import com.project.common.domain.repository.PostRepository;
 import com.project.common.domain.repository.UserRepository;
@@ -16,6 +18,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -29,6 +33,9 @@ public class PostService {
   private final S3Service s3Service;
   private final UserRepository userRepository;
   private final PostSearchService postSearchService; // -> (ElasticSearch)
+  //Kafka 와 Redis 인기게시글 적용
+  private final RedisTemplate<String, String> redisTemplate;
+  private final KafkaTemplate<String, PostEvent> kafkaTemplate;
 
   //게시글 작성
   @Transactional
@@ -125,11 +132,24 @@ public class PostService {
     if (!jwtAuthenticationProvider.validateToken(token)) {
       throw new CustomException(ErrorCode.LOGIN_CHECK_FAIL);
     }
+
+    Long userId = jwtAuthenticationProvider.getUserVo(token).getId();
+
     Post post = postRepository.findById(postId)
         .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_POST));
 
     post.setViews(post.getViews() == null ? 1 : post.getViews() + 1);
     postRepository.save(post);
+
+    // 중복 조회 방지 및 Kafka 발행
+    String viewedKey = "post:viewed:" + postId;
+
+    // add()가 1을 반환하면 처음 조회한것!
+    if (redisTemplate.opsForSet().add(viewedKey, userId.toString()) == 1) {
+      PostEvent evt = new PostEvent(postId, userId, PostEventType.VIEW, System.currentTimeMillis());
+      kafkaTemplate.send("post-events", evt);
+    }
+
     return post;
   }
 
