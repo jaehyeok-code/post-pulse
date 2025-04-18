@@ -29,8 +29,7 @@ public class PostSearchController {
 
     jwtAuthenticationProvider.getUserVo(token);
 
-    Page<PostDocument> esPage = postSearchService.searchPosts(query, page, size);
-    List<PostResponse> responses = esPage.getContent().stream()
+    List<PostResponse> responses = postSearchService.searchPosts(query, page, size).getContent().stream()
         .map(doc -> PostResponse.builder()
             .id(doc.getId())
             .userId(doc.getUserId())
@@ -40,7 +39,6 @@ public class PostSearchController {
             .updatedAt(doc.getUpdatedAt())
             .build())
         .toList();
-
     return ResponseEntity.ok(responses);
   }
 }

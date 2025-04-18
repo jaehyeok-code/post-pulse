@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,6 +15,7 @@ public class PostSearchService {
 
   private final PostDocumentRepository postDocumentRepository;
 
+  @Async
   public void indexPost(Post post) {
     PostDocument document = PostDocument.builder()
         .id(post.getId())

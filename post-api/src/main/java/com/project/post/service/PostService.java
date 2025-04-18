@@ -1,13 +1,16 @@
 package com.project.post.service;
 
-import com.project.common.domain.entity.User;
-import com.project.common.domain.repository.UserRepository;
-import com.project.common.service.S3Service;
-import com.project.common.domain.entity.Post;
-import com.project.common.domain.repository.PostRepository;
+import com.project.common.UserVo;
+import com.project.common.config.JwtAuthenticationProvider;
 import com.project.common.domain.dto.PostRequest;
+import com.project.common.domain.entity.Post;
+import com.project.common.domain.entity.User;
+import com.project.common.domain.repository.PostRepository;
+import com.project.common.domain.repository.UserRepository;
+import com.project.common.exception.CustomException;
+import com.project.common.exception.ErrorCode;
+import com.project.common.service.S3Service;
 import com.project.post.search.PostSearchService;
-import java.time.LocalDateTime;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -15,10 +18,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.project.common.UserVo;
-import com.project.common.config.JwtAuthenticationProvider;
-import com.project.common.exception.CustomException;
-import com.project.common.exception.ErrorCode;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
@@ -60,9 +59,9 @@ public class PostService {
         .imageUrl(imageUrl)
         .build();
 
-    Post createdPost = postRepository.save(post);
-    postSearchService.indexPost(createdPost);
-    return createdPost;
+    Post saved= postRepository.save(post);
+    postSearchService.indexPost(saved); // 비동기 처리 진행
+    return saved;
   }
 
   //게시글 수정
