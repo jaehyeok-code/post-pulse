@@ -1,6 +1,7 @@
 package com.project.notification.config;
 
 import org.apache.kafka.common.serialization.StringDeserializer;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 import com.project.common.domain.dto.NotificationEvent;
 import java.util.HashMap;
@@ -14,10 +15,14 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 
 @Configuration
 public class KafkaConsumerConfig {
+
+  @Value("${spring.kafka.bootstrap-servers}")  // application.yml 에 설정해둔 값
+  private String bootstrapServers;
+
   @Bean
   public ConsumerFactory<String, NotificationEvent> consumerFactory() {
-    Map<String,Object> props = new HashMap<>();
-    props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+    Map<String, Object> props = new HashMap<>();
+    props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
     props.put(ConsumerConfig.GROUP_ID_CONFIG, "notification-group");
     props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
     props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
