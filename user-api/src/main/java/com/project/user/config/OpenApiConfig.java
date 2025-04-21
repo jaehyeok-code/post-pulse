@@ -10,10 +10,7 @@ import org.springframework.context.annotation.Configuration;
         title = "Post_Pulse",
         version = "1.0",
         description = "API 설명"
-    ),
-    servers = {
-        @Server(url = "http://localhost:8080", description = "Local Server")
-    }
+    )
 )
 @Configuration
 public class OpenApiConfig {
