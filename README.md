@@ -9,8 +9,8 @@
 2. [선정 배경](#선정-배경)  
 3. [기술 스택](#기술-스택)  
 4. [ERD (Entity–Relationship Diagram)](#erd-entity–relationship-diagram)    
-5. [라이브 데모](#라이브-데모)
-6. [구현 기능 상세](구현-기능-상세)  
+5. [배포 URL](#배포-URL)
+6. [구현 기능 상세](#구현-기능-상세)  
 7. [API 엔드포인트 정리](#API-엔드포인트-정리)  
 
 
@@ -55,7 +55,7 @@ User, Post, Comment, Like, Notification 테이블의 ERD입니다.
 
 ---
 
-## 배포 URL
+## 배포 URL 
 
 - **서비스 베이스 URL**:  
   `http://43.200.216.28/`
