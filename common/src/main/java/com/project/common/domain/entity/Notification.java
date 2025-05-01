@@ -27,7 +27,7 @@ public class Notification {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  //알림받을유저는
+
   @Column(nullable = false)
   private Long recipientId;
 
