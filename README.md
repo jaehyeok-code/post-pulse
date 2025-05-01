@@ -8,10 +8,10 @@
 1. [프로젝트 개요](#프로젝트-개요)  
 2. [선정 배경](#선정-배경)  
 3. [기술 스택](#기술-스택)  
-4. [ERD (Entity–Relationship Diagram)](#erd-entity–relationship-diagram)    
-5. [배포 URL & Swagger UI](#배포-URL-&-Swagger-UI)
+4. [ERD (Entity–Relationship Diagram)](#erd-entity-relationship-diagram)  
+5. [배포 URL & Swagger UI](#배포-url--swagger-ui)  
 6. [구현 기능 상세](#구현-기능-상세)  
-7. [API 엔드포인트 정리](#API-엔드포인트-정리)  
+7. [API 엔드포인트 정리](#api-엔드포인트-정리)  
 
 
 ---
