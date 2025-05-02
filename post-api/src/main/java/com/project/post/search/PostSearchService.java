@@ -15,7 +15,6 @@ public class PostSearchService {
 
   private final PostDocumentRepository postDocumentRepository;
 
-  @Async
   public void indexPost(Post post) {
     PostDocument document = PostDocument.builder()
         .id(post.getId())
