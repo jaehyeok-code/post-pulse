@@ -8,10 +8,11 @@
 1. [프로젝트 개요](#프로젝트-개요)  
 2. [선정 배경](#선정-배경)  
 3. [기술 스택](#기술-스택)  
-4. [ERD (Entity–Relationship Diagram)](#erd-entity-relationship-diagram)  
-5. [배포 URL & Swagger UI](#배포-url--swagger-ui)  
-6. [구현 기능 상세](#구현-기능-상세)  
-7. [API 엔드포인트 정리](#api-엔드포인트-정리)  
+4. [ERD (Entity-Relationship Diagram)](#erd-entity-relationship-diagram)
+5. [배포 URL & Swagger UI](#배포-url--swagger-ui)
+6. [구현 예시 대표 이미지](#구현-예시-대표-이미지) 
+7. [구현 기능 상세](#구현-기능-상세)  
+8. [API 엔드포인트 정리](#api-엔드포인트-정리)  
 
 
 ---
@@ -49,6 +50,8 @@
 - **API 문서화**: Swagger UI (springdoc-openapi)  
 
 ---
+## 아키텍쳐 구조
+---
 
 ## ERD (Entity–Relationship Diagram)
 ![ERD](docs/PostPulse-3.png) 
@@ -61,12 +64,37 @@ User, Post, Comment, Like, Notification 테이블의 ERD입니다.
 - **서비스 베이스 URL**:  
   `http://43.200.216.28/`
 
-- **Swagger UI**:  
+- **Swagger UI URL**:  
   `http://43.200.216.28/swagger-ui/index.html`
 
 ---
 
-## 구현 기능 상세 
+## 구현 예시 대표 이미지
+
+### 1. 이메일 인증 예시 (Mailgun)
+![Email Verification Example](docs/postman/email_verification.png)
+
+
+### 2. 부분 문자열 검색 API
+![Elasticsearch Search Example](docs/postman/elasticsearch_search.png)
+
+
+### 3. 실시간 인기 게시글 집계 조회 API
+![Popular-Post Example](docs/postman/popular_example.png)
+
+
+### 4. 실시간 알림 기능 구현
+<details>
+  <summary>🔽 터미널 2개로 보는 SSE 실시간 알림</summary>
+
+  ![Notification SSE Demo](docs/postman/notification_sse.png)
+</details>
+
+
+---
+
+
+## 상세 구현 기능 정리 
 
 ### 회원 관리
 - [x] 회원가입 (이메일 인증 - Mailgun, OpenFeign 활용)
