@@ -13,8 +13,8 @@ import org.springframework.data.elasticsearch.annotations.Setting;
 @Setter
 @Builder
 @Document(indexName = "posts")
-@Setting(settingPath = "elasticsearch/settings.json")
-@Mapping(mappingPath  = "elasticsearch/mappings.json")
+@Setting(settingPath = "/elasticsearch/settings.json")
+@Mapping(mappingPath  = "/elasticsearch/mappings.json")
 public class PostDocument {
   @Id
   private Long id;

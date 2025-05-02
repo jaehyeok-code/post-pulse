@@ -3,12 +3,12 @@
     "title": {
       "type":            "text",
       "analyzer":        "ngram_analyzer",
-      "search_analyzer": "ngram_analyzer"
+      "search_analyzer": "whitespace_analyzer"
     },
     "content": {
       "type":            "text",
       "analyzer":        "ngram_analyzer",
-      "search_analyzer": "ngram_analyzer"
+      "search_analyzer": "whitespace_analyzer"
     },
     "userId": {
       "type": "long"
